@@ -27,7 +27,7 @@ def start():
 		numbers[from_number] = []
 		with resp.gather(numDigits=12, action="/sign-up", method="POST") as g:
  			g.say("Welcome to cheeka. Cheeka helps you build a circle of mothers who exchange child care. To sign up and start a cheeka circle, type in the phone number of a mother you trust who lives nearby after the beep.", voice="woman")
- 	return str(resp)
+	return str(resp)
 
 @app.route("/sign-up", methods=['GET', 'POST'])
 def handle_key():
@@ -48,7 +48,7 @@ def request_care():
 	resp = twilio.twiml.Response()
 	with resp.gather(numDigits=1, action="/decision", method="POST") as g:
  		g.say("To request child care, press zero. To add a mother who lives near you, press one.", voice="woman")
- 	return str(resp)
+	return str(resp)
 
 @app.route("/decision", methods=['GET', 'POST'])
 def decision():
@@ -66,7 +66,7 @@ def choose_day():
 
 	with resp.gather(numDigits=1, action="/send-text-messages", method="POST") as g:
  		g.say("If you need child care tomorrow, press zero. If you need child care the day after tomorrow, press one.", voice="woman")
- 	return str(resp)
+	return str(resp)
 
 @app.route("/send-text-messages", methods=['GET', 'POST'])
 def send_text_messages():
@@ -146,4 +146,5 @@ def handle_recording():
 	return str(resp)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
+
